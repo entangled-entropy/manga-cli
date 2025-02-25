@@ -33,7 +33,7 @@ xargs -n 1 -P 10 curl -s -O --output-dir .data/coverimgs/ < .data/coverlinks.txt
 
 # view Cover
 # feh --action "echo %f; pkill -P $$" coverimgs/*
-hash=$(feh --action "echo %f; kill \$PPID" .data/coverimgs/* | sed 's/.data\/\|coverimgs\/\|.webp//g')
+hash=$(setsid feh --action "echo %f; kill \$PPID" .data/coverimgs/* | sed 's/.data\/\|coverimgs\/\|.webp//g')
 # echo "$hash"
 # go to the selected manga 
 curl -s $(grep $hash .data/searchlinks.txt) > .data/$hash.html
